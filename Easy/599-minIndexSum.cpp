@@ -48,8 +48,6 @@ vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
     return ans;
 }
 
-
-
 int main(){
     vector<string> list1 = {"Shogun","Tapioca Express","Burger King","KFC"};
     vector<string> list2 = {"KNN","KFC","Burger King","Tapioca Express","Shogun"};
