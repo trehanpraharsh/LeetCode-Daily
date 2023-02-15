@@ -1,5 +1,5 @@
 /* 
- * ! This is not the Ideal way to do it as I have used another Matrix instead of doing it inPlace. 
+ This is not the Ideal way to do it as I have used another Matrix instead of doing it inPlace. 
  */ 
 
 
