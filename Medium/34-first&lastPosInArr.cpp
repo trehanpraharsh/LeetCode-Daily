@@ -6,26 +6,58 @@
 #include <unordered_map>
 using namespace std;
 
-vector<int> searchRange(vector<int>& nums, int target) {
-    vector<int> res;
-    for(int i = 0; i < nums.size(); i++){
-        if(nums[i] == target){
-            res.push_back(i);
+int firstOcc(vector<int>& nums, int target){
+    int low = 0;
+    int high = nums.size() - 1;
+    while(low <= high){
+        int mid = (low + high) / 2;
+        if(nums[mid] > target){
+            high = mid - 1;
+        }
+        else if(nums[mid] < target){
+            low = mid + 1;
+        }
+        else{
+            if(mid == 0 || nums[mid] != nums[mid - 1]){
+                return mid;
+            }
+            else{
+                high = mid - 1;
+            }
         }
     }
+    return -1;
+}
+
+int lastOcc(vector<int>& nums, int target){
+    int low = 0;
+    int high = nums.size() - 1;
+    while(low <= high){
+        int mid = (low + high) / 2;
+        if(nums[mid] > target){
+            high = mid - 1;
+        }
+        else if(nums[mid] < target){
+            low = mid + 1;
+        }
+        else{
+            if(mid == nums.size() - 1 || nums[mid] != nums[mid + 1]){
+                return mid;
+            }
+            else{
+                low = mid + 1;
+            }
+        }
+    }
+    return -1;
+}
+
+vector<int> searchRange(vector<int>& nums, int target) {
     vector<int> ans;
-    if(res.size() == 0){
-        ans.push_back(-1);
-        ans.push_back(-1);
-        return ans;
-    }
-    if(res.size() == 1){
-        ans.push_back(res[0]);
-        ans.push_back(res[0]);
-        return ans;
-    }
-    ans.push_back(res[0]);
-    ans.push_back(res[res.size() - 1]);
+    int firstOccurence = firstOcc(nums, target);
+    int lastOccurence = lastOcc(nums, target);
+    ans.push_back(firstOccurence);
+    ans.push_back(lastOccurence);
     return ans;
 }
 
